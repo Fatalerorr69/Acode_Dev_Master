@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="cs">
+<head><meta charset="utf-8"><title>Acode Web Installer</title></head>
+<body>
+  <h1>Acode Web Installer</h1>
+  <form id="f">
+    <button name="module" value="core">Instalovat Core</button>
+    <button name="module" value="ai">Instalovat AI</button>
+    <button name="module" value="android">Android / Acode</button>
+    <button name="module" value="wsl">WSL / VM</button>
+    <button name="module" value="lcd">LCD / RPi5</button>
+    <button name="module" value="zip">Vytvořit ZIP</button>
+  </form>
+  <div id="status"></div>
+  <script>
+    document.getElementById('f').addEventListener('click', async (e)=>{
+      if(e.target.tagName!=='BUTTON') return;
+      e.preventDefault();
+      const module=e.target.value;
+      const res=await fetch('/run',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'module='+module});
+      const j=await res.json();
+      document.getElementById('status').innerText=JSON.stringify(j);
+    });
+  </script>
+</body>
+</html>
