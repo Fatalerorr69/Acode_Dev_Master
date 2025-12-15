@@ -1,0 +1,14 @@
+{
+  "project_dir": "$HOME/projects",
+  "ai_engine": "auto",
+  "default_model": "codellama",
+  "report_dir": "$HOME/.acode_dev_master/reports",
+  "plugins_dir": "$HOME/.acode_dev_master/plugins",
+  "sandboxing": {
+    "preferred": ["firejail", "docker"],
+    "enabled": true
+  },
+  "non_interactive_defaults": {
+    "assume_yes": false
+  }
+}
