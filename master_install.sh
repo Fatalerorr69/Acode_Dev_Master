@@ -95,8 +95,6 @@ ensure_dir "$REPORTS_DIR"
 ensure_dir "$LOGS_DIR"
 
 # ---------- ZÁKLADNÍ SOUBORY ----------
-
-# README.md
 readme_content="# Acode Dev Master Installer
 
 **Acode Dev Master Installer** je modulární nástroj pro instalaci a správu mobilního i desktopového vývojového prostředí.
@@ -122,7 +120,6 @@ Projekt je licencován pod MIT. Viz soubor LICENSE.
 "
 write_file_if_missing "$README_FILE" "$readme_content"
 
-# LICENSE (základ MIT)
 license_content="MIT License
 
 Copyright (c) 2025
@@ -140,7 +137,6 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 "
 write_file_if_missing "$LICENSE_FILE" "$license_content"
 
-# .gitignore
 gitignore_content="/logs/
 /reports/
 /*.zip
@@ -150,7 +146,6 @@ __pycache__/
 "
 write_file_if_missing "$GITIGNORE_FILE" "$gitignore_content"
 
-# configs/acode_settings.json
 config_json='{
   "project_dir": "$HOME/projects",
   "ai_engine": "auto",
@@ -167,7 +162,6 @@ config_json='{
 }'
 write_file_if_missing "${CONFIGS_DIR}/acode_settings.json" "$config_json"
 
-# docs/INSTALL.md
 install_md="# Instalace Acode Dev Master Installer
 
 Tento dokument popisuje kroky pro instalaci a základní konfiguraci.
@@ -604,7 +598,6 @@ shopt -s nullglob
 for p in "${PLUGINS_DIR}"/*/plugin.sh; do
   if [ -f "$p" ]; then
     log "Načítám plugin: $p"
-    # source v subshellu, aby se nenačistil env
     ( source "$p" 2>/dev/null && type acode_plugin_init >/dev/null 2>&1 && acode_plugin_init "$WORKDIR" ) || log "Plugin $p nelze inicializovat"
   fi
 done
@@ -627,7 +620,6 @@ EOF
 # Pokud byl skript spuštěn přímo, nabídni menu
 if [ "${BASH_SOURCE[0]}" = "$0" ]; then
   log "Spouštím interaktivní menu"
-  # jednoduché menu pro další akce
   while true; do
     echo "============================="
     echo "  Acode Dev Master Installer"
