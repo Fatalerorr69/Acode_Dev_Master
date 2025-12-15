@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <title>Acode Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 8px; }
+    th { background: #f4f4f4; }
+  </style>
+</head>
+<body>
+  <h1>Acode Dashboard</h1>
+  <p>Seznam reportů</p>
+  <table>
+    <thead><tr><th>Soubor</th><th>Projekt</th><th>Čas</th></tr></thead>
+    <tbody>
+      {% for r in reports %}
+      <tr>
+        <td>{{ r.file }}</td>
+        <td>{{ r.project if r.project is defined else '-' }}</td>
+        <td>{{ r.timestamp if r.timestamp is defined else '-' }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
